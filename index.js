@@ -1,3 +1,4 @@
+//listerning and detecting button press 
 var buttons = document.querySelectorAll(".drum");
 
 for (n=0; n<buttons.length; n++){
@@ -5,14 +6,18 @@ for (n=0; n<buttons.length; n++){
 
         var buttonInnerHtml = this.innerHTML
         playSound(buttonInnerHtml);
+        buttonsAnimation(buttonInnerHtml);
        
     })
 }
 
+//listening and detecting keyboard press 
 document.addEventListener('keypress', function(press){
-    playSound(press.key)
+    playSound(press.key);
+    buttonsAnimation(press.key);
 })
 
+// playing different sounds base on conditions 
 function playSound(sound){
     switch (sound) {
         case 'w':
@@ -54,3 +59,13 @@ function playSound(sound){
             break;
     }
 }
+
+
+function buttonsAnimation(buttonKey){
+    var button = document.querySelector("."+buttonKey)
+    button.classList.add('pressed')
+    setTimeout(function(){
+        button.classList.remove('pressed')
+    }, 90);
+}
+
